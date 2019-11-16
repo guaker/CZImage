@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIImage (Category)
 
+/// 裁剪图片周围透明部分
 - (UIImage *)cutAlphaZero;
 
 @end

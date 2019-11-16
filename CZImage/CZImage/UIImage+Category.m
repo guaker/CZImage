@@ -10,7 +10,7 @@
 
 @implementation UIImage (Category)
 
-//pragma mark - 裁剪掉周围的透明部分
+/// 裁剪图片周围透明部分
 - (UIImage *)cutAlphaZero {
     CGImageRef cgImage = [self CGImage];
     
@@ -22,7 +22,13 @@
     size_t bytesPerRow = width * 4; // 一张图片每行字节数目 (每个像素点包含r g b a 四个字节)
     CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB(); // 创建rgb颜色空间
     
-    CGContextRef context = CGBitmapContextCreate(data, width,height,bitsPerComponent,bytesPerRow,space,kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
+    CGContextRef context = CGBitmapContextCreate(data,
+                                                 width,
+                                                 height,
+                                                 bitsPerComponent,
+                                                 bytesPerRow,
+                                                 space,
+                                                 kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
     
     CGContextDrawImage(context, CGRectMake(0, 0, width, height), cgImage);
     int top = 0;  // 上边框透明高度
@@ -96,7 +102,6 @@
         bottom ++;
     }
     
-
     CGFloat scale = self.scale;
     CGImageRef newImageRef = CGImageCreateWithImageInRect(cgImage, CGRectMake(left, top, self.size.width * scale - left - right, self.size.height * scale - top - bottom));
     UIImage *newImage = [UIImage imageWithCGImage:newImageRef];

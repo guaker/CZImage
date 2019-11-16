@@ -112,7 +112,6 @@ extension UIImage {
             bottom += 1
         }
         
-        
         let scale = self.scale
         guard let newCgImage: CGImage = cgImage.cropping(
             to: CGRect(x: CGFloat(left),
@@ -123,13 +122,9 @@ extension UIImage {
                 return nil
         }
         
-        
         let newImage = UIImage(cgImage: newCgImage)
         
         return newImage
-        
     }
-    
-    
     
 }
